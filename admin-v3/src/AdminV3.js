@@ -8,7 +8,7 @@ import {
 } from "react-admin";
 import { getV4Pages } from "./Redirect";
 import { dataProvider } from "./dataprovider";
-console.log(process.env.REACT_APP_V4_AVAILABLE_RESOURCES);
+
 export const V4ResourcesToServe =
   process.env.REACT_APP_V4_AVAILABLE_RESOURCES || "";
 
