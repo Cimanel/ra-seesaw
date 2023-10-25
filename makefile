@@ -13,4 +13,5 @@ build-adminV4:
 	yarn --cwd ./admin-v4 build
 
 start:
+	$(MAKE) build
 	yarn --cwd ./api start
