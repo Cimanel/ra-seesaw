@@ -9,8 +9,8 @@ import {
 import { getV4Pages } from "./Redirect";
 import { dataProvider } from "./dataprovider";
 
-export const V4ResourcesToServe =
-  process.env.REACT_APP_V4_AVAILABLE_RESOURCES || "";
+
+
 
 export const AdminV3 = () => (
   <Admin dataProvider={dataProvider} customRoutes={customRoutes()}>

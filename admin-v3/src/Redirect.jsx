@@ -1,84 +1,42 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
 import React, { useEffect } from "react";
-import { Route, useLocation, useParams } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 
-import { V4ResourcesToServe } from "./AdminV3";
+export const V4AvailableResources =
+  process.env.REACT_APP_V4_AVAILABLE_RESOURCES?.split(",") || "";
 
 export const getV4Pages = () => {
-  let v4Pages = [];
-  if (V4ResourcesToServe.includes("users")) {
-    v4Pages.push(
+  const v4Pages = V4AvailableResources.map((resource) => {
+    return [
       <Route
         exact
-        path="/users/"
-        key="v4UsersListRoute"
-        component={() => <Redirect url="users" />}
+        path={`/${resource}/`}
+        key={`/${resource}/`}
+        component={() => <Redirect />}
       />,
       <Route
-        path="/users/:id"
-        key="v4UserRoute"
-        component={() => <Redirect url="users" />}
-      />
-    );
-  }
-  if (V4ResourcesToServe.includes("posts")) {
-    v4Pages.push(
-      <Route
-        exact
-        path="/posts/"
-        key="v4PostsListRoute"
-        component={() => <Redirect url="posts" />}
+        path={`/${resource}/:id/show`}
+        key={`/${resource}/:id/show`}
+        component={() => <Redirect />}
       />,
       <Route
-        path="/posts/:id"
-        key="v4PostRoute"
-        component={() => <Redirect url="posts" />}
-      />
-    );
-  }
-  if (V4ResourcesToServe.includes("comments")) {
-    v4Pages.push(
-      <Route
-        exact
-        path="/comments/"
-        key="v4CommentsListRoute"
-        component={() => <Redirect url="comments" />}
+        path={`/${resource}/:id`}
+        key={`/${resource}/:id`}
+        component={() => <Redirect />}
       />,
-      <Route
-        path="/comments/:id"
-        key="v4CommentRoute"
-        component={() => <Redirect url="comments" />}
-      />
-    );
-  }
-  if (V4ResourcesToServe.includes("todos")) {
-    v4Pages.push(
-      <Route
-        exact
-        path="/todos/"
-        key="v4TodosListRoute"
-        component={() => <Redirect url="todos" />}
-      />,
-      <Route
-        path="/todos/:id"
-        key="v4TodoRoute"
-        component={() => <Redirect url="todos" />}
-      />
-    );
-  }
-  return v4Pages;
+    ];
+  });
+  return v4Pages.flat();
 };
 
-const afemV4Url = `${process.env.REACT_APP_API_URL}/v4/#/`;
+const afemV4Url = `${process.env.REACT_APP_API_URL}/v4/#`;
 
-const Redirect = (props) => {
-  const { url } = props;
-  const { id } = useParams();
-  const { search } = useLocation();
+const Redirect = () => {
+  const { search, pathname } = useLocation();
   useEffect(() => {
-    const path = id ? `${url}/${id}` : url;
-    window.location.href = `${afemV4Url}${path}${search}`;
-  }, [url]);
-  return <h5>Redirecting...</h5>;
+    window.location.href = `${afemV4Url}${pathname}${search}`;
+  }, [pathname, search]);
+  return <CircularProgress />;
 };
 
 export default Redirect;
