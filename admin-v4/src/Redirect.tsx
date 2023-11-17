@@ -1,7 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { apiUrl } from "./App";
+import { apiUrl } from "./AdminV4";
 
 const Redirect = () => {
   const { search, pathname } = useLocation();
