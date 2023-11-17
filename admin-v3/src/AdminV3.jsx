@@ -6,14 +6,11 @@ import {
   Resource,
   ShowGuesser,
 } from "react-admin";
-import { getV4Pages } from "./Redirect";
 import { dataProvider } from "./dataProvider";
-
-
-
+import { getV4Routes } from "./getV4Routes";
 
 export const AdminV3 = () => (
-  <Admin dataProvider={dataProvider} customRoutes={customRoutes()}>
+  <Admin dataProvider={dataProvider} customRoutes={customRoutes}>
     <Resource
       name="users"
       list={ListGuesser}
@@ -41,10 +38,6 @@ export const AdminV3 = () => (
   </Admin>
 );
 
-const customRoutes = () => {
-  const v4Pages = getV4Pages();
-
-  return [...v4Pages];
-};
+const customRoutes = getV4Routes();
 
 export default AdminV3;
