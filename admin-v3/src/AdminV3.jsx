@@ -7,7 +7,7 @@ import {
   ShowGuesser,
 } from "react-admin";
 import { getV4Pages } from "./Redirect";
-import { dataProvider } from "./dataprovider";
+import { dataProvider } from "./dataProvider";
 
 
 
