@@ -6,11 +6,12 @@ import {
   Resource,
   ShowGuesser,
 } from "react-admin";
+import authProvider from "./authProvider";
 import { dataProvider } from "./dataProvider";
 import { getV4Routes } from "./getV4Routes";
 
 export const AdminV3 = () => (
-  <Admin dataProvider={dataProvider} customRoutes={customRoutes}>
+  <Admin authProvider={authProvider} dataProvider={dataProvider} customRoutes={customRoutes}>
     <Resource
       name="users"
       list={ListGuesser}

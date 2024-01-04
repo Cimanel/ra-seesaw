@@ -8,11 +8,12 @@ import {
 } from "react-admin";
 import { dataProvider } from "./dataProvider";
 import { getV3Routes } from "./getV3Routes";
-
+import authProvider from "./authProvider";
 
 export const AdminV4 = () => {
   return (
     <Admin
+      authProvider={authProvider}
       dataProvider={dataProvider}
       // theme={nanoLightTheme}
     >
